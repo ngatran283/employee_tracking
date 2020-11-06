@@ -8,12 +8,22 @@
     "npm": "5.0.3"
   },
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "server": "nodemon index.js",
+    "client": "npm run start --prefix client",
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.19.0",
+    "cookie-session": "^1.4.0",
     "express": "^4.17.1",
-    "mongoose": "^5.10.12"
+    "mongoose": "^5.10.12",
+    "nodemon": "^2.0.6"
+  },
+  "devDependencies": {
+    "http-proxy-middleware": "^1.0.6"
   }
 }
